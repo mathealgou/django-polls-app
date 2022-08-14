@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{# djlint:off H030,H031 #}
+<html lang="en">
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+        <title>
+            Polls
+            {% block title %}
+            {% endblock title %}
+        </title>
+    </head>
+    <body>
+        <div id="header-container">
+            <div id="header">
+                <div id="header-user-name">
+                    {% block header %}
+                        {% if user.is_authenticated and user.username %}<p>Hello, {{ user.username }}</p>{% endif %}
+                    {% endblock header %}
+                </div>
+                <div id="header-logout-container">
+                    <a href="{% url 'polls:logout' %}">Logout</a>
+                    {% comment %} <a href="{% url 'polls:signup' %}">Signup</a> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>
+{# djlint:on #}
