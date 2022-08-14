@@ -1,0 +1,14 @@
+{% extends "polls/base.html" %}
+{% block title %}
+    Search
+{% endblock title %}
+{% block content %}
+    <h1>
+        Search for...
+        {% if search_term %}{{ search_term }}{% endif %}
+    </h1>
+    {% for question in questions %}
+        <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+        <br />
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "polls/base.html" %}
+{% block title %}
+    Create Poll
+{% endblock title %}
+{% block content %}
+    <form action="{% url 'polls:create_question_submit' %}"
+          method="post"
+          id="choices">
+        {% csrf_token %}
+        <input type="text" name="question_text" placeholder="Question Text" />
+        <button type="button"
+                value="Add Choice"
+                onclick="addChoice()"
+                class="add-button">Add Choice</button>
+        <button type="submit" id="submit" class="submit-button">Submit</button>
+    </form>
+    <script>
+		var choice_count = 0;
+		function addChoice() {
+			choice_count++;
+			var new_choice = document.createElement("input");
+			new_choice.type = "text";
+			new_choice.name = "choice_" + choice_count;
+			new_choice.placeholder = "Choice " + choice_count;
+			submit = document.getElementById("submit");
+			document.getElementById("choices").insertBefore(new_choice, submit);
+		}
+    </script>
+{% endblock content %}

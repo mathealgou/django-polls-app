@@ -16,4 +16,4 @@ def signup_submit(request):
     print(request.POST["password"])
     User.objects.create_user(request.POST["username"], request.POST["email"], request.POST["password"])
     
-    return HttpResponse("Thanks for signing up!")
+    return HttpResponseRedirect(reverse('polls:index'))
